@@ -5,7 +5,7 @@ import { IProfile } from '../../../core/Interface/Iprofile';
 import { Router } from '@angular/router';
 import { ProfileService } from '../../../core/services/profile.service';
 import { environment } from '../../../../environments/environment.development';
-// import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-editadminprofile',
@@ -21,7 +21,7 @@ export class EditadminprofileComponent {
   hasNewImage: boolean = false;
 
   constructor(private profileservice: ProfileService,
-    // private _snackbar:MatSnackBar
+    private _snackbar:MatSnackBar
   ) {
     this.root = `${environment.baseUrl}`;
   }
@@ -131,15 +131,15 @@ this.backtoProfile();
         },
         error: (err) => {
           console.log(err)
-                    // this._snackbar.open(
-                    //   err.error?.message || 'User Name Is Already Taken',
-                    //   'Close',
-                    //   {
-                    //     duration: 3000, // Duration in milliseconds
-                    //     horizontalPosition: 'end', // Horizontal position
-                    //     verticalPosition: 'top', // Vertical position
-                    //   }
-                    // );
+                    this._snackbar.open(
+                      err.error?.message || 'User Name Is Already Taken',
+                      'Close',
+                      {
+                        duration: 3000, // Duration in milliseconds
+                        horizontalPosition: 'end', // Horizontal position
+                        verticalPosition: 'top', // Vertical position
+                      }
+                    );
                     console.error("Update Error Details:", {
                       status: err.status,
                       statusText: err.statusText,

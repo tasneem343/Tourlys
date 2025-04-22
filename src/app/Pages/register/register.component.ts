@@ -2,7 +2,7 @@ import { Component, ViewEncapsulation } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../core/services/auth.service';
 import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
-// import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 import {
   AbstractControl,
@@ -49,7 +49,7 @@ export class RegisterComponent {
     private _authService: AuthService,
     private spinner: NgxSpinnerService,
     private _router: Router,
-    // private snackBar: MatSnackBar
+    private snackBar: MatSnackBar
   ) {}
   ngOnInit(): void {
     this.initFormControls();
@@ -158,12 +158,12 @@ export class RegisterComponent {
       next: (response) => {
         if (response.success) {
           this.spinner.hide();
-          // this.snackBar.open('Registration Successful!', 'Close', {
-          //   duration: 3000, // Duration in milliseconds
-          //   horizontalPosition: 'end', // Horizontal position
-          //   verticalPosition: 'top', // Vertical position
-          //   panelClass: ['snackbar-success'], // Custom class for styling
-          // });
+          this.snackBar.open('Registration Successful!', 'Close', {
+            duration: 3000, // Duration in milliseconds
+            horizontalPosition: 'end', // Horizontal position
+            verticalPosition: 'top', // Vertical position
+            panelClass: ['snackbar-success'], // Custom class for styling
+          });
           localStorage.setItem('token', response.token);
           localStorage.setItem('userId', response.id);
           this._router.navigate(['Home']);
@@ -182,36 +182,36 @@ export class RegisterComponent {
             }
           }
 
-          // this.snackBar.open(
-          //   errorMessages.join('\n'),
-          //   'Close',
-          //   {
-          //     duration: 5000, // Duration in milliseconds
-          //     horizontalPosition: 'end',
-          //     verticalPosition: 'top',
-          //     panelClass: ['snackbar-error'], // Custom class for styling
-          //   }
-          // );
+          this.snackBar.open(
+            errorMessages.join('\n'),
+            'Close',
+            {
+              duration: 5000, // Duration in milliseconds
+              horizontalPosition: 'end',
+              verticalPosition: 'top',
+              panelClass: ['snackbar-error'], // Custom class for styling
+            }
+          );
         }
         else if (error.error?.errorMessage) {
-          // this.snackBar.open(error.error.errorMessage, 'Close', {
-          //   duration: 5000, // Duration in milliseconds
-          //   horizontalPosition: 'end',
-          //   verticalPosition: 'top',
-          //   panelClass: ['snackbar-error'], // Custom class for styling
-          // });
+          this.snackBar.open(error.error.errorMessage, 'Close', {
+            duration: 5000, // Duration in milliseconds
+            horizontalPosition: 'end',
+            verticalPosition: 'top',
+            panelClass: ['snackbar-error'], // Custom class for styling
+          });
         }
         else {
-          // this.snackBar.open(
-          //   'An unexpected error occurred. Please try again.',
-          //   'Close',
-          //   {
-          //     duration: 5000, // Duration in milliseconds
-          //     horizontalPosition: 'end',
-          //     verticalPosition: 'top',
-          //     panelClass: ['snackbar-error'], // Custom class for styling
-          //   }
-          // );
+          this.snackBar.open(
+            'An unexpected error occurred. Please try again.',
+            'Close',
+            {
+              duration: 5000, // Duration in milliseconds
+              horizontalPosition: 'end',
+              verticalPosition: 'top',
+              panelClass: ['snackbar-error'], // Custom class for styling
+            }
+          );
         }
       },
     });

@@ -1,0 +1,44 @@
+<div class="container">
+  <div class="table">
+    <div class="table-header">
+      @if(bookings.length === 0) {
+
+      }
+        <div class="header__item"><a id="name" class="filter__link" style="cursor: pointer;">Hotel</a></div>
+      <div class="header__item"><a id="room" class="filter__link" style="cursor: pointer;">Room No.</a></div>
+      <div class="header__item"><a id="city" class="filter__link" style="cursor: pointer;">City</a></div>
+      <div class="header__item"><a id="status" class="filter__link filter__link--number" style="cursor: pointer;">Booking Status</a></div>
+      <div class="header__item"><a id="price" class="filter__link filter__link--number" style="cursor: pointer;">Total Price</a></div>
+      <div class="header__item"><a id="checkin" class="filter__link filter__link--number" style="cursor: pointer;">Check In</a></div>
+      <div class="header__item"><a id="checkout" class="filter__link filter__link--number" style="cursor: pointer;">Check Out</a></div>
+      <div class="header__item"><a id="checkout" class="filter__link filter__link--number" style="cursor: pointer;">Booking Date</a></div>
+      <div class="header__item"><a id="manage" class="filter__link filter__link--number" style="cursor: pointer;">Manage</a></div>
+    </div>
+
+    <div class="table-content">
+@if(bookings.length === 0) {
+  <div >
+    <div class=" section-subtitle" style="text-align: center;" >No Bookings Yet</div>
+  </div>}
+      @for (booking of bookings; track $index) {
+        <div class="table-row">
+          <div class="table-data">{{ booking.hotelName }}</div>
+          <div class="table-data">{{ booking.roomNumber }}</div>
+          <div class="table-data">{{ booking.cityName }}</div>
+          <div class="table-data">{{ booking.bookingStatus }}</div>
+          <div class="table-data">{{ booking.totalPrice | number:'1.2-2' }} L.E</div>
+          <div class="table-data">{{ booking.checkInDate | date : "dd MMMM yyyy" }}</div>
+          <div class="table-data">{{ booking.checkOutDate | date : "dd MMMM yyyy" }}</div>
+          <div class="table-data">{{ booking.createdAt | date : "dd MMMM yyyy" }}</div>
+          <div class="table-data">
+            @if (booking.bookingStatus.toUpperCase() === 'PENDING') {
+              <button class="cancelbtn" (click)="DeleteBooking(booking.bookingId)">X</button>
+              <button class="bookbtn" (click)="bookRoom(booking.roomId, booking.totalPrice,booking.checkInDate,booking.checkOutDate)">Book</button>
+            }@else{ No Action}
+
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</div>

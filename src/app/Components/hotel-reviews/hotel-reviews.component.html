@@ -1,0 +1,69 @@
+<section style="padding-top: 200px !important;">
+  <div class="container">
+    <div class="row justify-content-center text-center mb-5">
+      <div class="col-md-7">
+        <h2 class="heading h2 section-title" data-aos="fade-up">What People Say</h2>
+      </div>
+    </div>
+
+    <div class="testimonial-slider-wrapper" [@cardAnimation]>
+      <button class="scroll-arrow left" (click)="scrollLeft()">‹</button>
+
+      <div class="testimonial-scroll-container" #scrollContainer>
+        <div *ngFor="let review of reviews" class="testimonial-card">
+          <img
+            [src]="root + review.userImage"
+            alt="User"
+            class="testimonial-img"
+          />
+          <h3 class="heading h3 section-title">{{ review.userName }}</h3>
+          <blockquote>
+            <p class="card-content">“{{ review.comment }}”</p>
+          </blockquote>
+          <p class="card-content stars">
+            <ng-container *ngFor="let star of getStars(review.rating)">
+              <span [class.filled]="star === '★'">{{ star }}</span>
+            </ng-container>
+          </p>
+          <p class="card-content" style="font-size: small;">
+            {{ review.createdAt | date: 'medium' }}
+          </p>
+        </div>
+      </div>
+
+      <button class="scroll-arrow right" (click)="scrollRight()">›</button>
+    </div>
+  </div>
+</section>
+
+<!-- Review Form -->
+<form [formGroup]="reviewForm" (ngSubmit)="addReview()" class="review-form" [@formAnimation]>
+  <h2 class="heading h2 section-title">Add Your Review</h2>
+
+  <!-- Comment Input -->
+  <textarea
+    formControlName="comment"
+    class="form-control review-textarea"
+    placeholder="Write your review here..."
+  ></textarea>
+  <div *ngIf="reviewForm.get('comment')?.touched && reviewForm.get('comment')?.invalid" class="alert alert-danger mt-1">
+    <div *ngIf="reviewForm.get('comment')?.errors?.['required']">Comment is required.</div>
+    <div *ngIf="reviewForm.get('comment')?.errors?.['minlength']">Comment must be at least 3 characters.</div>
+  </div>
+
+  <!-- Rating Input -->
+  <div class="rating-stars">
+    <label *ngFor="let r of [1, 2, 3, 4, 5]" class="star-label"
+           (mouseover)="onStarHover(r)" (mouseleave)="onStarLeave()">
+      <input type="radio" formControlName="rating" [value]="r" />
+      <span class="star" [ngClass]="{'filled': r <= (reviewForm.get('rating')?.value || hoverRating)}">★</span>
+    </label>
+  </div>
+  <div *ngIf="reviewForm.get('rating')?.touched && reviewForm.get('rating')?.invalid" class="alert alert-danger mt-1">
+    <div *ngIf="reviewForm.get('rating')?.errors?.['required']">Rating is required.</div>
+    <div *ngIf="reviewForm.get('rating')?.errors?.['min']">Minimum rating is 1 star.</div>
+  </div>
+
+  <!-- Submit Button -->
+  <button class="btn btn-primary mt-2" type="submit">Submit Review</button>
+</form>

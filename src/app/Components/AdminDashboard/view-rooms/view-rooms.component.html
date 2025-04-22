@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="table">
+    <div class="table-header">
+      <div class="header__item"><a id="name" class="filter__link" >Room Number</a></div>
+      <div class="header__item"><a id="wins" class="filter__link filter__link--number" >Hotel Name</a></div>
+      <div class="header__item"><a id="draws" class="filter__link filter__link--number" >Room Type</a></div>
+      <div class="header__item"><a id="losses" class="filter__link filter__link--number" >Price Per Night</a></div>
+      <div class="header__item"><a id="losses" class="filter__link filter__link--number" >Image</a></div>
+      <div class="header__item"><a id="losses" class="filter__link filter__link--number" >Manage</a></div>
+    </div>
+
+    <div class="table-content">
+      @for ( room of rooms; track $index) {
+        <div class="table-row">
+          <div class="table-data">{{ room.roomNumber }}</div>
+          <div class="table-data">{{ room.hotelName }}</div>
+          <div class="table-data">{{ room.roomType }}</div>
+          <div class="table-data">{{ room.pricePerNight }}</div>
+          <div class="table-data" >
+            <img [src]="`${root}${room.imageUrl}` || './assets/images/person_1.jpg'" />
+          </div>
+          <div class="table-data"><i class="fas fa-edit"  (click)="GoToEditForm(room)" style="cursor: pointer;"></i><i class="fas fa-trash" (click)="DeleteRoom(room.roomId)" style="cursor: pointer; margin-left:20px;"></i>
+          </div>
+
+        </div>
+      }
+    </div>
+  </div>
+</div>

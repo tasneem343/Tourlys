@@ -1,0 +1,92 @@
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+/>
+<section class="card-section" style="padding-top: 0;">
+  <div class="wrapper page-content">
+    <div class="inner">
+      <form [formGroup]="CreateForm" (ngSubmit)="submit()">
+        <!-- Image Preview and Upload -->
+        <div class="image-upload-section">
+          <img
+            *ngIf="imagePreview"
+            [src]="imagePreview"
+            alt="Hotel Image"
+            style="
+              width: 80px;
+              height: 80px;
+              margin-bottom: 10px;
+              object-fit: cover;
+              border-radius: 50%;
+            "
+          />
+          <label for="imageUrl" class="custom-file-label">Add Photo</label>
+          <input
+          type="file"
+          id="imageUrl"
+          (change)="onImageSelected($event)"
+          class="file-input"
+          accept="image/*"
+        />
+        <div *ngIf="CreateForm.get('imageUrl')?.touched && CreateForm.get('imageUrl')?.invalid"  class="validation-error"        >
+          <div *ngIf="CreateForm.get('imageUrl')?.errors?.['required']">
+            Image is required
+          </div>
+          <div *ngIf="CreateForm.get('imageUrl')?.errors?.['pattern']" class="validation-error">
+            Image must be in .jpg, .jpeg, or .png format
+          </div>
+        </div>
+        </div>
+
+        <!-- Hotel Name -->
+        <div class="form-wrapper">
+          <input
+            type="text"
+            placeholder="Hotel Name"
+            class="form-control"
+            formControlName="name"
+          />
+          <div
+            *ngIf="CreateForm.get('name')?.touched && CreateForm.get('name')?.invalid"
+            class="validation-error"
+          >
+            <div *ngIf="CreateForm.get('name')?.errors?.['required']">
+              Hotel Name is required
+            </div>
+            <div *ngIf="CreateForm.get('name')?.errors?.['pattern']">
+              Hotel Name Must Be From 2-30 Characters
+            </div>
+          </div>
+        </div>
+
+
+
+        <!-- City Selection -->
+        <div class="form-wrapper">
+          <div class="select-container">
+            <select
+              class="form-control"
+              formControlName="cityId"
+            >
+              <option selected [ngValue]="null"  disabled>Select a city</option>
+              @for (city of cities; track $index) {
+                <option [ngValue]="city.cityId">{{ city.name }}</option>
+              }
+            </select>
+          </div>
+          <div
+            *ngIf="CreateForm.get('cityId')?.touched && CreateForm.get('cityId')?.invalid"
+            class="validation-error"
+          >
+            <div *ngIf="CreateForm.get('cityId')?.errors?.['required']">
+              City is required
+            </div>
+          </div>
+        </div>
+
+        <!-- Button -->
+        <button type="submit">Create</button>
+      </form>
+    </div>
+  </div>
+</section>

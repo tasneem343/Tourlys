@@ -1,0 +1,85 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+<section class="card-section">
+  <div class="wrapper page-content">
+    <div class="inner">
+      <form [formGroup]="UpdateForm" (ngSubmit)="submit()">
+        <!-- Image Preview and Upload -->
+        <div class="form-group image-upload-section">
+          <img
+            *ngIf="imagePreview"
+            [src]="imagePreview"
+            alt="Profile Image"
+            style="width: 80px; height: 80px; margin-bottom: 10px; object-fit: cover; border-radius: 50%;"
+          />
+          <img
+            *ngIf="!imagePreview"
+            src="/assets/default-image.png"
+            alt="Default Image"
+            style="width: 80px; height: 80px; margin-bottom: 10px; object-fit: cover; border-radius: 50%;"
+          />
+          <label for="imageUrl" class="custom-file-label">Change Photo</label>
+          <input
+            type="file"
+            id="imageUrl"
+            (change)="onImageSelected($event)"
+            class="form-control file-input"
+            accept="image/*"
+            style="display: none;"
+          />
+        </div>
+        <div *ngIf="imageError" class="validation-error">
+          {{ imageError }}
+        </div>
+        <div class="form-wrapper">
+          <input
+            type="number"
+            placeholder="pricePerNight"
+            class="form-control"
+            formControlName="pricePerNight"
+          />
+          <div
+            *ngIf="UpdateForm.get('pricePerNight')?.touched && UpdateForm.get('pricePerNight')?.invalid"
+            class="validation-error"
+          >
+            <div *ngIf="UpdateForm.get('pricePerNight')?.errors?.['required']">
+              price Per Night is required
+            </div>
+            <div *ngIf="UpdateForm.get('pricePerNight')?.errors?.['pattern']">
+              Price Per Night must be a positive Number
+        </div>
+          </div>
+        </div>
+      <!-- Hotel Name -->
+      <div class="form-wrapper">
+        <div class="select-container">
+          <select
+          [(ngModel)]="room.roomType"
+            class="form-control"
+            formControlName="roomType"
+          >
+          <option value="" disabled>Select Room Type</option>
+          <option value="Single"> Single</option>
+              <option value="Double" >Double </option>
+              <option value="Suite" >Suite</option>
+
+          </select>
+        </div>
+        <div
+          *ngIf="UpdateForm.get('roomType')?.touched && UpdateForm.get('roomType')?.invalid"
+          class="validation-error"
+        >
+          <div *ngIf="UpdateForm.get('roomType')?.errors?.['required']">
+            room Type is required
+          </div>
+        </div>
+      </div>
+
+
+
+
+        <!-- Button -->
+        <button type="submit">Update</button>
+      </form>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,53 @@
+<div class="container">
+  <div class="table">
+    <div class="table-header">
+      <div class="header__item">
+        <a class="filter__link filter__link--number" style="cursor: pointer;">#</a>
+      </div>
+      <div class="header__item">
+        <a class="filter__link filter__link--number" style="cursor: pointer;">Hotel Name</a>
+      </div>
+      <div class="header__item">
+        <a class="filter__link filter__link--number" style="cursor: pointer;">rating</a>
+      </div>
+      <div class="header__item">
+        <a class="filter__link filter__link--number" style="cursor: pointer;">comment</a>
+      </div>
+      <div class="header__item">
+        <a class="filter__link filter__link--number" style="cursor: pointer;">created At</a>
+      </div>
+      <div class="header__item">
+        <a class="filter__link filter__link--number" style="cursor: pointer;">
+         Delete
+        </a>
+      </div>
+    </div>
+
+    <div class="table-content">
+      @if(Reviews.length === 0) {
+        <div >
+          <div class=" section-subtitle" style="text-align: center;" >No Reviews Yet</div>
+        </div>}
+      <div class="table-row" *ngFor="let Review of Reviews; index as i">
+        <div class="table-data">{{ i + 1 }}</div>
+
+        <div class="table-data">{{ Review.hotelName}}</div>
+        <div class="table-data">
+          <ng-container *ngFor="let star of [1,2,3,4,5]">
+            <i
+              class="fa-star"
+              [ngClass]="star <= Review.rating ? 'fas' : 'far'"
+              style="color: gold;">
+            </i>
+          </ng-container>
+        </div>
+
+        <div class="table-data">{{ Review.comment }}</div>
+        <div class="table-data">{{ Review.createdAt | date : "dd MMMM yyyy" }}</div>
+        <div class="table-data">
+          <i class="fas fa-trash" title="DeleteReview" (click)="DeleteReview(Review.reviewId)" style="cursor: pointer; margin-left: 20px;"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

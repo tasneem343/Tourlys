@@ -1,0 +1,82 @@
+<link rel="preload" href="./assets/images/a.jpg" as="image">
+<div class="wrapper"   style="background-image: url('./assets/images/a.jpg')"
+>
+  <div class="inner">
+    <div class="logo-holder">
+      <img src="./assets/images/logo-blue.svg" alt="Logo" />
+    </div>
+    <form [formGroup]="loginForm" (ngSubmit)="submit()">
+      <h3 class="section-title h3" style="margin:40px;">Login</h3>
+
+      <div class="form-wrapper">
+        <input
+          type="text"
+          placeholder="Email Address"
+          formControlName="email"
+          class="form-control"
+        />
+        <i class="fas fa-envelope"></i>
+      </div>
+      @if (email.touched && email.dirty) {
+        @if (email.getError('required')) {
+          <div class="error-message">Email is required</div>
+        }
+        @if (email.getError('email')) {
+          <div class="error-message">Invalid email format</div>
+        }
+      }
+      <div class="form-wrapper">
+        <input
+          type="password"
+          placeholder="Password"
+          formControlName="password"
+          class="form-control"
+        />
+        <i class="fas fa-lock"></i>
+      </div>
+      @if (password.touched && password.dirty) {
+        @if (password.getError('required')) {
+          <div class="error-message">Password is required</div>
+        }
+        @if (password.getError('minlength')) {
+          <div class="error-message">
+            Password must be at least {{ password.getError("minlength").requiredLength }} characters long
+          </div>
+        }
+        @if (password.getError('pattern')) {
+          <div class="error-message">
+            Password must contain at least one uppercase letter, one lowercase letter, and one number
+          </div>
+        }
+      }
+      <div class="form-group centered-text">
+        <span>Don't have an account?</span>
+        <a routerLink="/Register" class="register-link">Register</a>
+      </div>
+      <button class="btn btn-primary" type="submit">
+        Login
+        <i class="fas fa-arrow-right"></i>
+      </button>
+      <div class="divider">
+        <span>or continue with</span>
+      </div>
+
+      <div class="social-login-row">
+        <button
+          class="social-btn google"
+          type="button"
+          (click)="loginWithProvider('Google')"
+        >
+          <i class="fab fa-google"></i>
+        </button>
+        <button
+          class="social-btn github"
+          type="button"
+          (click)="loginWithProvider('GitHub')"
+        >
+          <i class="fab fa-github"></i>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

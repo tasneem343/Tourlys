@@ -1,0 +1,52 @@
+<div class="container">
+  <h3 class="h3 section-title" style="text-align: center;">Users</h3>
+  <div class="table">
+    <div class="table-header">
+      <div class="header__item"><a id="name" class="filter__link" >UserName</a></div>
+      <div class="header__item"><a id="wins" class="filter__link filter__link--number" >Email</a></div>
+      <div class="header__item"><a id="draws" class="filter__link filter__link--number">Joined At</a></div>
+      <div class="header__item"><a id="losses" class="filter__link filter__link--number" >Image</a></div>
+      <div class="header__item"><a id="losses" class="filter__link filter__link--number" >Manage</a></div>
+    </div>
+
+    <div class="table-content">
+      @for ( user of users; track user.userName) {
+        <div class="table-row">
+          <div class="table-data">{{ user.userName }}</div>
+          <div class="table-data">{{ user.email }}</div>
+          <div class="table-data">{{ user.createdAt | date : "dd MMMM yyyy" }}</div>
+          <div class="table-data" >
+            <img [src]="`${root}${user.imageUrl}` || './assets/images/person_1.jpg'" />
+          </div>
+          <div class="table-data"(click)="assignAdmin(user)"><i class="fas fa-check" style="cursor: pointer;" ></i>       <i class="fas fa-trash" (click)="DeleteUser(user.userId)" style="cursor: pointer; margin-left:20px;"></i></div>
+ </div>
+
+      }
+    </div>
+  </div>
+
+  <h3 class="h3 section-title" style="text-align: center; margin-top: 10px;">Admins</h3>
+
+  <div class="table">
+    <div class="table-header">
+      <div class="header__item"><a id="name" class="filter__link" >UserName</a></div>
+      <div class="header__item"><a id="wins" class="filter__link filter__link--number" >Email</a></div>
+      <div class="header__item"><a id="draws" class="filter__link filter__link--number" >Joined At</a></div>
+      <div class="header__item"><a id="losses" class="filter__link filter__link--number" >Image</a></div>
+    </div>
+
+    <div class="table-content">
+      @for ( admin of admins; track admin.userName) {
+        <div class="table-row">
+          <div class="table-data">{{ admin.userName }}</div>
+          <div class="table-data">{{ admin.email }}</div>
+          <div class="table-data">{{ admin.createdAt | date : "dd MMMM yyyy" }}</div>
+          <div class="table-data" >
+            <img [src]="`${root}${admin.imageUrl}` || './assets/images/person_1.jpg'" />
+          </div>
+
+        </div>
+      }
+    </div>
+  </div>
+</div>

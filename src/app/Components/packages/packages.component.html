@@ -1,0 +1,62 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+<section class="package" id="package">
+
+  <div class="container">
+    <p class="section-subtitle">Search Results</p>
+    <h2 class="h2 section-title">Available Packages</h2>
+
+    <ul class="package-list">
+      <li *ngFor="let room of results">
+        <div class="package-card">
+          <figure class="card-banner">
+            <img  [src]="`${root}${room.imageUrl}`" alt="{{ room.hotelName }}" loading="lazy">
+          </figure>
+
+          <div class="card-content">
+            <h3 class="h3 card-title">{{ room.hotelName }}</h3>
+            <p class="card-text">
+              Room Number: {{ room.roomNumber }} <br>
+              Room Type: {{ room.roomType }}
+            </p>
+
+            <ul class="card-meta-list">
+              <li class="card-meta-item">
+                <div class="meta-box">
+                  <i class="fa fa-clock"></i>
+                  <p class="text">From {{ formData.checkIn }} to {{ formData.checkOut }}</p>
+                </div>
+              </li>
+
+              <li class="card-meta-item">
+                <div class="meta-box">
+                  <i class="fa fa-map-marker-alt"></i>
+                  <p class="text">{{ formData.city }}</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div class="card-price">
+            <div class="wrapper">
+              <a class="reviews" (click)="goToReviews(room.hotelName)" style="cursor: pointer;"> Show All Reviews</a>
+            </div>
+
+            <p class="price">
+              {{ room.pricePerNight }}L.E
+              <span>/ per night</span>
+            </p>
+
+
+            @if(room.bookingStatus == "Available") {
+              <button class="btn btn-secondary" (click)="bookRoom(room.roomId, room.pricePerNight)">Book Now</button>
+          } @else {
+            <button class="btn btn-secondary" disabled>
+              <i class="fa fa-clock"></i>
+              On Hold</button>
+          }
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>

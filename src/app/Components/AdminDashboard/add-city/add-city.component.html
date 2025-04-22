@@ -1,0 +1,69 @@
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+/>
+<section class="card-section">
+  <div class="wrapper page-content">
+    <div class="inner"  >
+      <form [formGroup]="CreateForm" (ngSubmit)="submit()">
+        <!-- Image Preview and Upload -->
+        <div class="image-upload-section">
+          <img
+            *ngIf="imagePreview"
+            [src]="imagePreview"
+            alt="Hotel Image"
+            style="
+              width: 80px;
+              height: 80px;
+              margin-bottom: 10px;
+              object-fit: cover;
+              border-radius: 50%;
+            "
+          />
+          <label for="imageUrl" class="custom-file-label">Add Photo</label>
+          <input
+          type="file"
+          id="imageUrl"
+          (change)="onImageSelected($event)"
+          class="file-input"
+          accept="image/*"
+        />
+        <div *ngIf="CreateForm.get('imageUrl')?.touched && CreateForm.get('imageUrl')?.invalid" class="validation-error">
+          <div *ngIf="CreateForm.get('imageUrl')?.errors?.['required'] && !CreateForm.get('imageUrl')?.value">
+            Image is required
+          </div>
+          <div *ngIf="CreateForm.get('imageUrl')?.errors?.['pattern']">
+            Image must be in .jpg, .jpeg, or .png format
+          </div>
+        </div>
+        </div>
+        <!-- Hotel Name -->
+        <div class="form-wrapper">
+          <input
+            type="text"
+            placeholder="City Name"
+            class="form-control"
+            formControlName="name"
+          />
+          <div
+            *ngIf="CreateForm.get('name')?.touched && CreateForm.get('name')?.invalid"
+            class="validation-error"
+          >
+            <div *ngIf="CreateForm.get('name')?.errors?.['required']">
+              City Name is required
+            </div>
+            <div *ngIf="CreateForm.get('name')?.errors?.['pattern']">
+              City Name Must Be From 2-20 Characters
+            </div>
+          </div>
+        </div>
+
+
+
+
+        <!-- Button -->
+        <button type="submit">Create</button>
+      </form>
+    </div>
+  </div>
+</section>

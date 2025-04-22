@@ -1,0 +1,57 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+
+<div class="trip-container">
+  <div class="trip-header">
+    <h1 class="h2 section-title">Itinerary List</h1>
+    <button (click)="toggleForm()" class="btn btn-primary">+ Add</button>
+  </div>
+
+  <div *ngIf="showForm" class="trip-form">
+    <h2 class="h3 card-title">{{ isEditMode ? 'Edit Trip' : 'Add New Trip' }}</h2>
+    <input type="text" placeholder="Title" [(ngModel)]="newTrip.title" required />
+    <input type="date" [(ngModel)]="newTrip.startDate" required />
+    <input type="date" [(ngModel)]="newTrip.endDate" required />
+    <textarea placeholder="Notes" [(ngModel)]="newTrip.notes"></textarea>
+    <div class="form-actions">
+      <button class="btn btn-primary" (click)="addTrip()">
+        {{ isEditMode ? 'Update' : 'Add' }}
+      </button>
+      <button class="cancel-btn" (click)="cancelEdit()">Cancel</button>
+    </div>
+  </div>
+
+  <div *ngIf="tripList.length === 0" class="empty-state">No trips added yet.</div>
+
+  <table *ngIf="tripList.length > 0" class="trip-table">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Notes</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let trip of tripList">
+        <td [class.done]="trip.done">{{ trip.title }}</td>
+        <td [class.done]="trip.done">{{ trip.startDate | date }}</td>
+        <td [class.done]="trip.done">{{ trip.endDate | date }}</td>
+        <td [class.done]="trip.done">{{ trip.notes }}</td>
+        <td>
+          <button class="done-btn" (click)="markAsDone(trip)" title="Mark as Done">
+            <i class="fa-solid fa-circle-check" [ngClass]="{'checked': trip.done}"></i>
+          </button>
+
+          <button class="edit-btn" (click)="editTrip(trip)" title="Edit">
+            <i class="fa-solid fa-pen-to-square"></i>
+          </button>
+
+          <button class="delete-btn" (click)="deleteTrip(trip)" title="Delete">
+            <i class="fa-solid fa-trash"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

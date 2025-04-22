@@ -1,0 +1,218 @@
+<link rel="preload" href="./assets/images/a.jpg" as="image">
+<div class="wrapper" style="background-image: url('./assets/images/a.jpg')">
+  <div class="inner">
+    <form [formGroup]="registerForm" (ngSubmit)="submit()">
+      <h3 class="section-title h2">Register</h3>
+
+      <!-- Name UserName-->
+      <div class="form-group triple-input">
+        <div style="width: 100%">
+          <input
+            type="text"
+            placeholder="First Name"
+            class="form-control"
+            formControlName="firstName"
+          />
+          @if (firstName.touched && firstName.dirty &&
+          firstName.getError('required')) {
+          <div class="error-message">First Name is required</div>
+          }
+          <div
+            class="error-message"
+            *ngIf="registerForm.get('firstName')?.errors?.['pattern']"
+          >
+            First Name Must Be From 2-20 Characters
+          </div>
+        </div>
+
+        <div style="width: 100%">
+          <input
+            type="text"
+            placeholder="Last Name"
+            class="form-control"
+            formControlName="lastName"
+          />
+          @if (lastName.touched && lastName.dirty &&
+          lastName.getError('required')) {
+          <div class="error-message">Last Name is required</div>
+          }
+          <div
+            class="error-message"
+            *ngIf="registerForm.get('lastName')?.errors?.['pattern']"
+          >
+            Last Name Must Be From 2-20 Characters
+          </div>
+        </div>
+
+        <div style="width: 100%">
+          <input
+            type="text"
+            placeholder="UserName"
+            class="form-control"
+            formControlName="userName"
+          />
+          @if (userName.touched && userName.dirty &&
+          userName.getError('required')) {
+          <div class="error-message">Username is required</div>
+          }
+        </div>
+      </div>
+
+      <!-- Email -->
+      <div class="form-wrapper">
+        <input
+          type="text"
+          placeholder="Email Address"
+          class="form-control"
+          formControlName="email"
+        />
+        <i class="fas fa-envelope"></i>
+      </div>
+      @if (email.touched&& email.dirty) { @if (email.getError('required')) {
+      <div class="error-message">Email is required</div>
+      } @if (email.getError('email')) {
+      <div class="error-message">Invalid email format</div>
+      } }
+      <!-- Phone -->
+      <div class="form-wrapper">
+        <input
+          type="text"
+          placeholder="Phone Number"
+          class="form-control"
+          formControlName="phoneNumber"
+        />
+        <i class="fas fa-phone"></i>
+      </div>
+
+      @if (phoneNumber.touched&& phoneNumber.dirty) { @if
+      (phoneNumber.getError('required')) {
+      <div class="error-message">Phone Number is required</div>
+      } @if (phoneNumber.getError('pattern')) {
+      <div class="error-message">
+        Phone Number must be 11 digits long and start with 0
+      </div>
+      } }
+
+      <!-- Password -->
+      <div class="form-wrapper">
+        <input
+          type="password"
+          placeholder="Password"
+          class="form-control"
+          formControlName="password"
+        />
+        <i class="fas fa-lock"></i>
+      </div>
+      @if (password.touched&& password.dirty) { @if
+      (password.getError('required')) {
+      <div class="error-message">Password is required</div>
+      } @if (password.getError('minlength')) {
+      <div class="error-message">
+        Password must be at least
+        {{ password.getError("minlength").requiredLength }} characters long
+      </div>
+      } @if (password.getError('pattern')) {
+      <div class="error-message">
+        Password must contain at least one uppercase letter, one lowercase
+        letter, and one number
+      </div>
+      } }
+      <!-- date of birth -->
+      <div class="form-wrapper">
+        <input
+          type="date"
+          placeholder="Date of Birth"
+          class="form-control"
+          formControlName="birthDate"
+        />
+      </div>
+      @if (birthDate.touched&& birthDate.dirty) { @if
+      (birthDate.getError('required')) {
+      <div class="error-message">Date of Birth is required</div>
+      }}
+
+      <!-- City, State, Street -->
+      <div class="form-group triple-input">
+        <div style="width: 100%">
+          <input
+            type="text"
+            placeholder="City"
+            class="form-control"
+            formControlName="city"
+          />
+          @if (city.touched && city.dirty && city.getError('required')) {
+          <div class="error-message">City is required</div>
+          }
+          <div
+            class="error-message"
+            *ngIf="registerForm.get('city')?.errors?.['pattern']"
+          >
+            City Must Be From 2-20 Characters
+          </div>
+        </div>
+
+        <div style="width: 100%">
+          <input
+            type="text"
+            placeholder="State"
+            class="form-control"
+            formControlName="state"
+          />
+          @if (state.touched && state.dirty && state.getError('required')) {
+          <div class="error-message">State is required</div>
+          }
+          <div
+            class="error-message"
+            *ngIf="registerForm.get('state')?.errors?.['pattern']"
+          >
+            State Must Be From 2-20 Characters
+          </div>
+        </div>
+
+        <div style="width: 100%">
+          <input
+            type="text"
+            placeholder="Street"
+            class="form-control"
+            formControlName="street"
+          />
+          @if (street.touched && street.dirty && street.getError('required')) {
+          <div class="error-message">Street is required</div>
+          }
+        </div>
+      </div>
+
+      <!-- upload Image  -->
+      <input
+        type="file"
+        id="image"
+        (change)="onImageSelected($event)"
+        class="form-control file-input"
+      />
+      @if (image.touched&& image.dirty) { @if (image.getError('required')) {
+      <div class="error-message">Image is required</div>
+      } @if (image.getError('pattern')) {
+      <div class="error-message">
+        Image must be in .jpg, .jpeg, or .png format
+      </div>
+      } }
+
+      <!-- Login Link -->
+      <div class="form-group centered-text">
+        <span style="color: black !important">Already have an account?</span>
+        <a
+          routerLink="/Login"
+          class="register-link"
+          style="color: rgb(0, 123, 255) !important"
+          >Login</a
+        >
+      </div>
+
+      <!-- Button -->
+      <button class="btn btn-primary" type="submit">
+        Register
+        <i class="fas fa-arrow-right"></i>
+      </button>
+    </form>
+  </div>
+</div>

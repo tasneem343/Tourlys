@@ -1,0 +1,93 @@
+<app-header></app-header>
+
+<!-- Hero Section -->
+<section class="hero" id="hero">
+  <div class="hero-overlay"></div>
+  <div class="container hero-content">
+    <img src="https://wp1.themevibrant.com/newwp/royalking/wp-content/uploads/2023/10/page-title.jpg" alt="Contact Us Background" class="hero-background animate-zoom">
+    <h2 class="h1 hero-title animate-fade">Contact Us</h2>
+    <p class="hero-text animate-fade">
+      We're here to help you plan your perfect getaway. Reach out to us anytime!
+    </p>
+  </div>
+</section>
+
+<!-- Contact Form Section -->
+<section class="about-section">
+  <div class="about-content container">
+
+    <!-- Form Section -->
+    <div class="trip-container" style="padding:0px !important; background-color: hsl(0, 0%, 60%) !important;">
+      <div class="form-wrapper">
+        <p class="h2 section-title text-animated">Get in Touch</p>
+        <p class="text-blk subHeadingText text-animated">We’re just a message away!</p>
+
+
+        <div *ngIf="successMessage" class="success-message">{{ successMessage }}</div>
+
+
+        <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+
+        <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="contact-form" id="contact-form">
+          <div class="form-group">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" formControlName="name" placeholder="Your Name" required>
+            <div *ngIf="contactForm.get('name')?.invalid && contactForm.get('name')?.touched" class="error">
+              Name is required.
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" formControlName="email" placeholder="Your Email" required>
+            <div *ngIf="contactForm.get('email')?.invalid && contactForm.get('email')?.touched" class="error">
+              Please enter a valid email.
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="message">Your Message</label>
+            <textarea id="message" formControlName="message" placeholder="Tell us about your inquiry" required></textarea>
+            <div *ngIf="contactForm.get('message')?.invalid && contactForm.get('message')?.touched" class="error">
+              Message cannot be empty .
+            </div>
+          </div>
+
+          <button type="submit" class="submit-btn" [disabled]="contactForm.invalid || isSubmitting">
+            {{ isSubmitting ? 'Sending...' : 'Send Message' }}
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Text Section -->
+    <div class="text-container">
+      <h2 class="section-title h2 text-animated">Reach Us Anytime</h2>
+      <p class="section-text text-animated">
+        Have questions or need assistance? Our team is ready to help you with your travel plans.
+      </p>
+      <ul class="contact-info">
+        <li>
+          <span class="icon">
+            <img src="assets/icons/email-icon.png" alt="email icon">
+          </span>
+          <strong>Email:</strong> <a href="mailto:support@tourly.com">supporttourly.com</a>
+        </li>
+        <li>
+          <span class="icon">
+            <img src="assets/icons/phone-icon.png" alt="phone icon">
+          </span>
+          <strong>Phone:</strong> +123-456-7890
+        </li>
+        <li>
+          <span class="icon">
+            <img src="assets/icons/location-icon.png" alt="location icon">
+          </span>
+          <strong>Address:</strong> 123 Travel Lane, Adventure City, World
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<app-footer></app-footer>

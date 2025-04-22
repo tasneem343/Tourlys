@@ -1,0 +1,130 @@
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+/>
+<section class="card-section" style="padding-top: 0;">
+  <div class="wrapper page-content">
+    <div class="inner">
+      <form [formGroup]="CreateForm" (ngSubmit)="submit()">
+        <!-- Image Preview and Upload -->
+        <div class="image-upload-section">
+          <img
+            *ngIf="imagePreview"
+            [src]="imagePreview"
+            alt="room Image"
+            style="
+              width: 80px;
+              height: 80px;
+              margin-bottom: 10px;
+              object-fit: cover;
+              border-radius: 50%;
+            "
+          />
+          <label for="imageUrl" class="custom-file-label">Add Photo</label>
+          <input
+          type="file"
+          id="imageUrl"
+          (change)="onImageSelected($event)"
+          class="file-input"
+          accept="image/*"
+        />
+        <div *ngIf="CreateForm.get('imageUrl')?.touched && CreateForm.get('imageUrl')?.invalid" class="validation-error">
+          <div *ngIf="CreateForm.get('imageUrl')?.errors?.['required'] && !CreateForm.get('imageUrl')?.value">
+            Image is required
+          </div>
+          <div *ngIf="CreateForm.get('imageUrl')?.errors?.['pattern']">
+            Image must be in .jpg, .jpeg, or .png format
+          </div>
+        </div>
+        </div>
+
+
+        <!-- Description -->
+        <div class="form-wrapper">
+          <input
+            type="text"
+            placeholder="roomNumber"
+            class="form-control"
+            formControlName="roomNumber"
+          />
+          <div
+            *ngIf="CreateForm.get('roomNumber')?.touched && CreateForm.get('roomNumber')?.invalid"
+            class="validation-error"
+          >
+            <div *ngIf="CreateForm.get('roomNumber')?.errors?.['required']">
+              Room Number is required
+            </div>
+            <div *ngIf="CreateForm.get('roomNumber')?.errors?.['pattern']">
+                  Room Number must be a positive Number
+            </div>
+          </div>
+        </div>
+        <div class="form-wrapper">
+          <input
+            type="number"
+            placeholder="PricePerNight  E£"
+            class="form-control"
+            formControlName="pricePerNight"
+          />
+          <div
+            *ngIf="CreateForm.get('pricePerNight')?.touched && CreateForm.get('pricePerNight')?.invalid"
+            class="validation-error"
+          >
+            <div *ngIf="CreateForm.get('pricePerNight')?.errors?.['required']">
+              Price Per Night is required
+            </div>
+            <div *ngIf="CreateForm.get('pricePerNight')?.errors?.['pattern']">
+              Price Per Night must be a positive Number
+        </div>
+          </div>
+        </div>
+        <!-- City Selection -->
+        <div class="form-wrapper">
+          <div class="select-container">
+            <select
+              class="form-control"
+              formControlName="HotelId"
+            >
+              <option selected [ngValue]="null"  disabled>Select A Hotel</option>
+              @for (hotel of hotels; track $index) {
+                <option [ngValue]="hotel.hotelId">{{hotel.name }}</option>
+              }
+            </select>
+          </div>
+          <div
+            *ngIf="CreateForm.get('HotelId')?.touched && CreateForm.get('HotelId')?.invalid"
+            class="validation-error"
+          >
+            <div *ngIf="CreateForm.get('HotelId')?.errors?.['required']">
+              Hotel is required
+            </div>
+          </div>
+        </div>
+        <div class="form-wrapper">
+          <div class="select-container">
+            <select
+              class="form-control"
+              formControlName="roomType"
+            >
+            <option selected value="" disabled>Select Room Type</option>
+            <option value="Single"> Single</option>
+                <option value="Double" >Double </option>
+                <option value="Suite" >Suite</option>
+
+            </select>
+          </div>
+          <div
+            *ngIf="CreateForm.get('roomType')?.touched && CreateForm.get('roomType')?.invalid"
+            class="validation-error"
+          >
+            <div *ngIf="CreateForm.get('roomType')?.errors?.['required']">
+              room Type is required
+            </div>
+          </div>
+        </div>
+        <!-- Button -->
+        <button type="submit">Create</button>
+      </form>
+    </div>
+  </div>
+</section>

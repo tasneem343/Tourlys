@@ -1,0 +1,212 @@
+.trip-container {
+  max-width: 1000px;
+  margin: 30px auto;
+  background: #fff;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.7s ease-in-out;
+  margin-top:200px;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.trip-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.trip-header h1 {
+  color: hsl(205, 36%, 17%);
+  font-size: 2rem;
+  margin: 0;
+}
+
+.add-btn,
+.btn.btn-primary {
+  background-color: hsl(205, 36%, 17%);
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s ease-in-out;
+}
+
+.add-btn:hover,
+.btn.btn-primary:hover {
+  background-color: #1e3a5f;
+  transform: scale(1.05);
+}
+
+.trip-form {
+  margin-bottom: 20px;
+  background: #f4f7fb;
+  padding: 20px;
+  border-radius: 12px;
+  animation: slideDown 0.5s ease;
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.trip-form input,
+.trip-form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  transition: border-color 0.3s;
+}
+
+.trip-form input:focus,
+.trip-form textarea:focus {
+  border-color: #2a52be;
+  outline: none;
+}
+
+.trip-form textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.done {
+  text-decoration: line-through;
+  color: gray;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.form-actions button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.form-actions button:first-child {
+  background-color: #2a52be;
+  color: white;
+}
+
+.form-actions button:hover {
+  transform: translateY(-2px);
+}
+
+.cancel-btn {
+  background-color: #ccc;
+}
+
+.empty-state {
+  text-align: center;
+  font-size: 1.1rem;
+  color: #888;
+  padding: 20px;
+  animation: fadeIn 0.5s ease;
+}
+
+.trip-table {
+  width: 100%;
+  border-collapse: collapse;
+  animation: fadeIn 0.6s ease;
+}
+
+.trip-table th,
+.trip-table td {
+  text-align: left;
+  padding: 14px;
+  border-bottom: 1px solid #ddd;
+  transition: background 0.3s;
+}
+
+.trip-table tr:hover {
+  background-color: #f1f1f1;
+}
+
+.trip-table th {
+  background-color: hsl(205, 36%, 17%);
+  color: white;
+}
+
+/* ======== Buttons Styling ======== */
+.trip-table td button {
+  font-size: 1.2rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-right: 8px;
+  padding: 6px;
+  border-radius: 50%;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.trip-table td button:hover {
+  transform: scale(1.1);
+}
+
+.trip-table td button i {
+  font-size: 1.1rem;
+}
+
+.done-btn:hover {
+  background-color: rgba(0, 128, 0, 0.1);
+}
+
+.delete-btn {
+  color: #c0392b;
+}
+.edit-btn{
+  color: #f0dc02;
+}
+
+.delete-btn:hover {
+  background-color: rgba(192, 57, 43, 0.1);
+}
+
+.done-btn i.checked {
+  color: green;
+}
+
+td.done {
+  text-decoration: line-through;
+  color: gray;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .trip-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .trip-table th,
+  .trip-table td {
+    font-size: 0.9rem;
+    padding: 10px;
+  }
+
+  .trip-form input,
+  .trip-form textarea {
+    font-size: 0.9rem;
+  }
+
+  .form-actions {
+    flex-direction: column;
+    align-items: flex-end;
+  }
+}

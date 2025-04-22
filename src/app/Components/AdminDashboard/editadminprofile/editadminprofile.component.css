@@ -1,0 +1,249 @@
+/* Core styles */
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  color:hsl(0, 0%, 25%);
+  font-size: 13px;
+  margin: 0;
+  width: 100%;
+  height: auto;
+}
+
+input,
+textarea,
+select,
+button {
+  font-family: "Poppins", sans-serif;
+  color: #333;
+  font-size: 15px;
+}
+
+.wrapper {
+  min-height: 100vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  animation: slideInFromRight 700ms ease-out forwards;
+
+
+}
+
+.inner {
+  padding: 20px;
+  background: #fff;
+  max-width: 850px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.inner form {
+  width: 100%;
+  padding: 36px 45px;
+}
+
+.form-group {
+  display: flex;
+}
+.form-group input {
+  width: 50%;
+}
+.form-group input:first-child {
+  margin-right: 25px;
+}
+
+.form-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-wrapper i {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 16px;
+  color: #333;
+  z-index: 2;
+}
+
+.form-control {
+  border: 1px solid #333;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  display: block;
+  width: 100%;
+  height: 50px;
+  padding: 15px 40px 15px 15px;
+  margin-bottom: 25px;
+  font-size: 16px;
+}
+
+/* Required asterisk */
+.required-asterisk {
+  color: red;
+  font-size: 18px;
+  margin-bottom: 5px;
+  align-self: flex-start;
+}
+
+/* Validation error messages */
+.validation-error {
+  color: red;
+  font-size: 12px;
+  margin-top: -20px;
+  margin-bottom: 15px;
+}
+
+/* Image upload section */
+.image-upload-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.custom-file-label {
+  display: inline-block;
+  background: var(--bright-navy-blue);
+  color: var(--white);
+  text-transform: uppercase;
+  font-size: var(--fs-5);
+  font-weight: 600;
+  cursor: pointer;
+
+  border-radius: 100px;
+  padding: var(--padding, 6px 18px);
+  border: var(--border-width, 2px) solid transparent;
+  transition: var(--transition);
+}
+
+
+.custom-file-label:hover {
+  background: var(--yale-blue);
+  border-color: var(--yale-blue);}
+
+.file-input {
+  display: none;
+}
+
+.image-upload-section img {
+  border-radius: 50%;
+  margin-bottom: 15px;
+}
+
+/* Triple input for City, State, Street */
+.triple-input {
+  display: flex;
+  gap: 25px;
+  margin-bottom: 15px;
+}
+
+.triple-input input {
+  width: 100%;
+}
+
+/* Button */
+button {
+  border: none;
+  width: 164px;
+  height: 51px;
+  margin: auto;
+  margin-top: 40px;
+  cursor: pointer;
+display: flex;
+justify-content: center;
+align-items: center;
+  background: var(--bright-navy-blue);
+  color: var(--white);
+  text-transform: uppercase;
+  font-size: var(--fs-5);
+  font-weight: 600;
+
+  border-radius: 100px;
+  padding: var(--padding, 8px 18px);
+  border: var(--border-width, 2px) solid transparent;
+  transition: var(--transition);
+}
+
+button:hover {
+  background: var(--yale-blue);
+  border-color: var(--yale-blue);
+}
+
+
+.btn.btn-primary:hover {
+  background:var(--yale-blue)
+}
+
+/* Card section */
+.card-section {
+  padding-top: 200px;
+  padding-bottom: 50px;
+}
+
+.page-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* Media queries */
+@media (max-width: 991px) {
+  .inner form {
+    padding-top: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+}
+
+@media (max-width: 767px) {
+  .inner {
+    display: block;
+  }
+  .inner form {
+    width: 100%;
+    padding: 40px 0 30px;
+  }
+  button {
+    margin-top: 60px;
+  }
+  .form-group {
+    flex-direction: column;
+  }
+  .form-group input {
+    width: 100%;
+  }
+  .form-group input:first-child {
+    margin-right: 0;
+    margin-bottom: 25px;
+  }
+  .triple-input {
+    flex-direction: column;
+    gap: 15px;
+  }
+}
+@keyframes slideInFromRight {
+  0% {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  50% {
+    opacity: 0.5;
+    transform: translateX(25px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}

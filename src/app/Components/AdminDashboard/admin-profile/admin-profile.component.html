@@ -1,0 +1,44 @@
+
+
+<div class="emp-profile">
+  <div class="profile-header">
+    <div class="profile-img">
+      <img
+        [src]="`${root}${profile?.imageUrl}` || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog'"
+        alt="Profile Image"
+      />
+    </div>
+    <div class="profile-info">
+      <div class="name-button-container">
+        <h5>{{ profile?.firstName }} {{ profile?.lastName }}</h5>
+
+      </div>
+    </div>
+  </div>
+
+  <ul class="nav-tabs">
+    <li class="nav-item">
+      <a
+        class="nav-link" routerLinkActive="active" routerLink="/Admin/adminprofile/admininfo"
+        >About</a
+      >
+    </li>
+    <li class="nav-item">
+      <a
+        class="nav-link" routerLinkActive="active" routerLink="/Admin/adminprofile/editadminprofile"
+        >Edit Profile</a
+      >
+    </li>
+
+  </ul>
+
+  <div class="tab-content"> <router-outlet
+      class="tab-pane"
+    ></router-outlet>
+    <div class="tab-pane">
+
+
+</div>
+  </div>
+</div>
+

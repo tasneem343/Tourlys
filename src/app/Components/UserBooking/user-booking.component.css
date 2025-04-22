@@ -1,0 +1,264 @@
+.container {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 10px;
+}
+
+.table {
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.07), 0 -2px 6px rgba(0, 0, 0, 0.07);
+  width: 100%;
+  border: 1px solid #EEEEEE;
+  background: #FFFFFF;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.table-header {
+  display: flex;
+  width: 100%;
+  background: hsl(214, 56%, 58%);
+  padding: 12px 0;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+.table-content {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.table-row {
+  display: flex;
+  width: 100%;
+  padding: 12px 0;
+  background: #FFFFFF;
+  box-sizing: border-box;
+  animation: slideInFromRight 700ms ease-out forwards;
+
+}
+
+.table-row:last-child {
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
+
+.table-row:hover {
+  background: #F5F5F5;
+}
+
+.table-data,
+.header__item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1 1 20%;
+  text-align: center;
+  font-size: 14px;
+  padding: 0 8px;
+  min-width: 60px;
+}
+
+.header__item {
+  text-transform: uppercase;
+}
+
+.filter__link {
+  color: white;
+  text-decoration: none;
+  position: relative;
+  display: inline-block;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+.cancelbtn {
+  background-color: #dd828d;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 10px;
+margin-left: 5px;
+  cursor: pointer;
+  font-size: 12px;
+  width: 40px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease;
+}
+.bookbtn{
+
+    background-color: hsl(214, 57%, 51%);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 10px;
+  margin-left: 5px;
+    cursor: pointer;
+    font-size: 12px;
+    width: 40px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease;
+
+}
+
+.cancelbtn:hover {
+  background-color: #f44336 !important;
+}
+.bookbtn:hover {
+  background-color: hsl(214, 72%, 33%);
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 5px;
+  }
+
+  .table-header {
+    display: none;
+  }
+
+  .table-content {
+    padding: 0;
+  }
+
+  .table-row {
+    display: block;
+    margin: 10px 5px;
+    padding: 15px;
+    border: 1px solid #EEEEEE;
+    border-radius: 8px;
+    background: #FFFFFF;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    width: calc(100% - 10px);
+    box-sizing: border-box;
+  }
+
+  .table-data {
+    display: block;
+    text-align: left;
+    padding: 8px 0;
+    font-size: 14px;
+    min-width: unset;
+    flex: none;
+    border-bottom: 1px solid #F5F5F5;
+  }
+
+  .table-data:nth-child(1)::before {
+    content: "Hotel: ";
+    font-weight: bold;
+    color: #333;
+  }
+
+  .table-data:nth-child(2)::before {
+    content: "Room No.: ";
+    font-weight: bold;
+    color: #333;
+  }
+
+  .table-data:nth-child(3)::before {
+    content: "City: ";
+    font-weight: bold;
+    color: #333;
+  }
+
+  .table-data:nth-child(4)::before {
+    content: "Booking Status: ";
+    font-weight: bold;
+    color: #333;
+  }
+
+  .table-data:nth-child(5)::before {
+    content: "Total Price: ";
+    font-weight: bold;
+    color: #333;
+  }
+
+  .table-data:nth-child(6)::before {
+    content: "Check-In: ";
+    font-weight: bold;
+    color: #333;
+  }
+
+  .table-data:nth-child(7)::before {
+    content: "Check-Out: ";
+    font-weight: bold;
+    color: #333;
+  }
+
+  .table-data:nth-child(8)::before {
+    content: "Booking Date: ";
+    font-weight: bold;
+    color: #333;
+  }
+  .table-data:nth-child(9)::before {
+    content: "Manage: ";
+    font-weight: bold;
+    color: #333;
+  }
+
+  .table-data:last-child {
+    border-bottom: none;
+    display: flex;
+    justify-content: flex-start;
+    padding-top: 12px;
+  }
+
+  .cancelbtn {
+    font-size: 11px;
+    padding: 6px 12px;
+    width: 35px;
+    height: 28px;
+  }
+  .bookbutton{
+    font-size: 11px;
+    padding: 6px 12px;
+    width: 35px;
+    height: 28px;
+  }
+}
+
+@media (max-width: 480px) {
+  .table-row {
+    margin: 5px 3px;
+    padding: 10px;
+    width: calc(100% - 6px);
+  }
+
+  .table-data {
+    font-size: 12px;
+    padding: 6px 0;
+  }
+
+  .cancelbtn {
+    font-size: 10px;
+    padding: 5px 10px;
+    width: 60px;
+    height: 26px;
+  }
+  .bookbutton{
+    font-size: 11px;
+    padding: 6px 12px;
+    width: 70px;
+    height: 28px;
+  }
+}
+@keyframes slideInFromRight {
+  0% {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  50% {
+    opacity: 0.5;
+    transform: translateX(25px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}

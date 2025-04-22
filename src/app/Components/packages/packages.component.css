@@ -1,0 +1,6 @@
+a.reviews{
+    color:hsl(208, 97%, 12%);
+}
+a.reviews:hover {
+    color: white;
+  }

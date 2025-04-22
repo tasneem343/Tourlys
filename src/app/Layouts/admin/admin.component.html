@@ -1,0 +1,95 @@
+<link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
+<!-- <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"> -->
+
+<div class="parent-container">
+  <div class="nav-container">
+    <nav>
+      <a href="#" class="navbar-logo">
+        <img src="./assets/images/logo-blue.svg" alt="Logo">
+      </a>
+
+      <div id="usermenu">
+        <div class="user-info">
+          <img [src]="`${root}${profile?.imageUrl}`"alt="User Avatar" />
+          {{profile?.userName}}
+            <!-- <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/> -->
+
+        </div >
+        <div class="submenu" >
+          <div >
+          <a routerLink="/Admin/adminprofile/admininfo" style="cursor: pointer;" >My Profile</a>
+        </div>
+        <div >
+          <a  (click)="logout()" style="cursor: pointer;" >Logout</a>
+        </div>
+      </div>
+      </div>
+    </nav>
+  </div>
+
+  <div class="main-content">
+    <aside class="aside">
+      <div class="menu-box">
+        <div class="menu-header" (click)="toggleMenu('permissions')">
+          Users
+          <svg viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4 arrow" [ngClass]="{'rotated': menuStates['permissions']}">
+            <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/>
+          </svg>
+        </div>
+        <div class="menu-links" *ngIf="menuStates['permissions']">
+          <a routerLink="/Admin/viewusers">Manage Users</a>
+        </div>
+      </div>
+      <div class="menu-box">
+        <div class="menu-header" (click)="toggleMenu('rooms')">
+          Rooms
+          <svg viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4 arrow" [ngClass]="{'rotated': menuStates['rooms']}">
+            <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/>
+          </svg>
+        </div>
+        <div class="menu-links" *ngIf="menuStates['rooms']">
+          <a routerLink="/Admin/viewrooms">View All Rooms</a>
+          <a routerLink="/Admin/addroom">Add A Room</a>
+        </div>
+      </div>
+      <div class="menu-box">
+        <div class="menu-header" (click)="toggleMenu('hotels')">
+          Hotels
+          <svg viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4 arrow" [ngClass]="{'rotated': menuStates['hotels']}">
+            <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/>
+          </svg>
+        </div>
+        <div class="menu-links" *ngIf="menuStates['hotels']">
+          <a routerLink="/Admin/viewhotels">View All Hotels</a>
+          <a routerLink="/Admin/addhotel">Add A Hotel</a>
+        </div>
+      </div>
+      <div class="menu-box">
+        <div class="menu-header" (click)="toggleMenu('cities')">
+          Cities
+          <svg viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4 arrow" [ngClass]="{'rotated': menuStates['cities']}">
+            <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/>
+          </svg>
+        </div>
+        <div class="menu-links" *ngIf="menuStates['cities']">
+          <a routerLink="/Admin/viewcities">View All Cities</a>
+          <a routerLink="/Admin/addcity">Add City</a>
+        </div>
+      </div>
+      <div class="menu-box">
+        <div class="menu-header" (click)="toggleMenu('booking')">
+          Booking
+          <svg viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4 arrow" [ngClass]="{'rotated': menuStates['booking']}">
+            <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/>
+          </svg>
+        </div>
+        <div class="menu-links" *ngIf="menuStates['booking']">
+          <a routerLink="/Admin/viewbookings">View All Booking</a>
+        </div>
+      </div>
+    </aside>
+    <div class="page-content">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

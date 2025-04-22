@@ -1,0 +1,124 @@
+<header class="header" data-header [class.active]="isSticky" >
+  <div
+    class="overlay"
+    data-overlay
+    [class.active]="isNavActive"
+    (click)="toggleNav()"
+  ></div>
+
+  <div class="header-top">
+    <div class="container">
+      <a href="tel:+01123456790" class="helpline-box">
+        <div>
+        </div>
+        <div class="wrapper">
+
+        </div>
+      </a>
+
+      <a href="#" class="logo">
+        <img src="./assets/images/logo.svg" alt="Tourly logo" />
+      </a>
+
+      <div class="header-btn-group">
+
+        <button
+          class="nav-open-btn"
+          aria-label="Open Menu"
+          data-nav-open-btn
+          (click)="toggleNav()"
+        >
+          <i class="fa fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="header-bottom" >
+    <div class="">
+
+
+      <nav class="navbar" data-navbar [class.active]="isNavActive">
+        <div class="navbar-top">
+          <a href="#" class="logo">
+            <img src="./assets/images/logo-blue.svg" alt="Tourly logo" />
+          </a>
+          <button
+            class="nav-close-btn"
+            aria-label="Close Menu"
+            data-nav-close-btn
+            (click)="toggleNav()"
+          >
+            <i class="fa fa-times"></i>
+          </button>
+        </div>
+
+        <ul class="navbar-list" >
+          <li>
+            <a
+              routerLink="/"
+              class="navbar-link"
+              (click)="toggleNav()"
+              routerLinkActive="active"
+              >Home</a
+            >
+          </li>
+          <li>
+            <a
+              class="navbar-link"
+              routerLink="/AllDestinations"
+            >
+              <i class="fas fa-map-marker-alt"></i> Destinations
+            </a>
+          </li>
+
+          <li><a class="navbar-link" routerLink="/Itinerary">Trip plan</a></li>
+
+          <li>
+            <a class="navbar-link" routerLink="/aboutus" (click)="scrollTo('gallery'); toggleNav()"
+              >About Us</a
+            >
+          </li>
+          <li>
+            <a class="navbar-link"  routerLink="/ContactUs" (click)="scrollTo('contact'); toggleNav()"
+              >Contact</a
+            >
+          </li >
+          <li class="navbar-list navbarlist" style=" margin-left: 20px;border: none !important;">
+            @if(IsLoggedIn){
+
+            <ul class="navbar-list"style="border: none !important;" >
+              <li class="dropdown">
+                <div class="dropdown-toggle" (click)="toggleDropdown()">
+                  <a class="navbar-link"  >
+                    <img
+                      [src]="`${root}${profile?.imageUrl}`"
+                      class="avatar-img"
+                      alt="User Avatar"
+                    />
+                  </a>
+                  <span class="navbar-link" > {{ profile?.userName }}</span>
+                  <i class="fas fa-chevron-down arrow navlink " [ngClass]="{ up: isDropdownOpen }"></i>
+                </div>
+                <div class="dropdown-menu" [ngClass]="{ show: isDropdownOpen }">
+                  <a href="#" class="dropdown-item" routerLink="/profile/userinfo"
+                    >Profile</a
+                  >
+                  <a class="dropdown-item" style="cursor: pointer;" (click)="logout()">
+                    Logout
+                  </a>
+                </div>
+              </li>
+            </ul>
+            } @if(!IsLoggedIn){
+            <button class="btn btn-primary" routerLink="/Login">Login</button>
+
+            }
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+

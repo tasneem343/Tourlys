@@ -1,0 +1,43 @@
+<div class="container">
+  <div class="table">
+    <div class="table-header">
+      <div class="header__item"><a id="name" class="filter__link" >Hotel Name</a></div>
+      <div class="header__item"><a id="losses" class="filter__link filter__link--number" >User Name</a></div>
+      <div class="header__item"><a id="losses" class="filter__link filter__link--number" >Booking Status</a></div>
+      <div class="header__item"><a id="losses" class="filter__link filter__link--number" >Total Price</a></div>
+      <div class="header__item"><a id="losses" class="filter__link filter__link--number" >Check in</a></div>
+      <div class="header__item"><a id="losses" class="filter__link filter__link--number" >Check out</a></div>
+      <div class="header__item"><a id="losses" class="filter__link filter__link--number" >Booking Date</a></div>
+      <div class="header__item"><a id="losses" class="filter__link filter__link--number" >Manage</a></div>
+    </div>
+
+    <div class="table-content">
+      @for (booking of bookings; track $index) {
+        <div class="table-row">
+          <div class="table-data">{{ booking.hotelName }}</div>
+          <div class="table-data">{{ booking.userName }}</div>
+          <div class="table-data">{{ booking.bookingStatus }}</div>
+          <div class="table-data">{{ booking.totalPrice }}</div>
+          <div class="table-data">{{ booking.checkInDate | date: "dd MMMM yyyy" }}</div>
+          <div class="table-data">{{ booking.checkOutDate | date: "dd MMMM yyyy" }}</div>
+          <div class="table-data">{{ booking.createdAt | date: "dd MMMM yyyy" }}</div>
+
+
+            <div class="table-data">
+
+            @if (booking.bookingStatus.toUpperCase() === 'PENDING') {
+              <button
+                class="btn cancelbtn btn-primary"
+                title="Cancel Booking"
+                (click)="DeleteBooking(booking.bookingId)"
+              >
+                Cancel
+              </button>
+            }@else{No Action
+            }
+            </div>
+        </div>
+      }
+    </div>
+  </div>
+</div>

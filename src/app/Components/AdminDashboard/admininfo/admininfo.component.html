@@ -1,0 +1,48 @@
+<div class="profile-details">
+  <!-- Pair 1: User Name and First Name -->
+  <div class="detail-pair">
+    <div class="detail-row">
+      <label>First Name</label>
+      <p>{{ profile?.firstName }}</p>
+    </div>
+    <div class="detail-row">
+      <label>Last Name</label>
+      <p>{{ profile?.lastName }}</p>
+    </div>
+  </div>
+  <!-- Pair 2: Last Name and Email -->
+  <div class="detail-pair">
+    <div class="detail-row">
+      <label>User Name</label>
+      <p>{{ profile?.userName }}</p>
+    </div>
+    <div class="detail-row">
+      <label>Email</label>
+      <p>{{ profile?.email }}</p>
+    </div>
+  </div>
+  <!-- Pair 3: Phone and Address -->
+  <div class="detail-pair">
+    <div class="detail-row">
+      <label>Phone</label>
+      <p>{{ profile?.phoneNumber }}</p>
+    </div>
+    <div class="detail-row">
+      <label>Address</label>
+      <p>
+        {{ profile?.state }}, {{ profile?.city }}, {{ profile?.street }}
+      </p>
+    </div>
+  </div>
+  <!-- Pair 4: Joined At and Date of Birth -->
+  <div class="detail-pair">
+    <div class="detail-row">
+      <label>Joined At</label>
+      <p>{{ profile?.createdAt | date : "dd MMMM yyyy" }}</p>
+    </div>
+    <div class="detail-row">
+      <label>Date Of Birth</label>
+      <p>{{ profile?.dateOfBirth | date : "dd MMMM yyyy" }}</p>
+    </div>
+  </div>
+</div>

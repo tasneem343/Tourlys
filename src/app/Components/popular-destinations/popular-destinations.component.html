@@ -1,0 +1,38 @@
+<section class="popular" id="destination">
+  <div class="container">
+
+    <p class="section-subtitle">Uncover place</p>
+
+    <h2 class="h2 section-title">Popular destination</h2>
+<ul class="popular-list">
+  <li *ngFor="let city of filterCities">
+    <div class="popular-card">
+      <figure class="card-img">
+        <img [routerLink]="['/SearchResult']" style="cursor: pointer;" [src]="`${root}${city.imageUrl}`" [alt]="city.name" loading="lazy"[queryParams]="{ city: city.name }">{{ city.name }}/>
+      </figure>
+
+      <div class="card-content">
+
+
+
+        <p class="card-subtitle">
+          <a [routerLink]="['/SearchResult']" [queryParams]="{ city: city.name }">{{ city.name }}</a>
+
+        </p>
+
+        <h3 class="h3 card-title">
+          <a [routerLink]="['/SearchResult']" [queryParams]="{ city: city.name }">{{ city.name }}</a>
+
+        </h3>
+
+        <p class="card-text">
+          Discover the beauty of {{ city.name }}.
+        </p>
+
+      </div>
+    </div>
+  </li>
+</ul>
+<button class="btn btn-primary" [routerLink]="['/AllDestinations']">More destintion</button>
+</div>
+</section>

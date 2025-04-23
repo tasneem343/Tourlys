@@ -49,26 +49,26 @@ export class LoginComponent {
       if (token && userId) {
         localStorage.setItem('token', token);
         localStorage.setItem('userId', userId);
-       const role = this._authService.getRole();
-          const returnUrl = localStorage.getItem('returnUrl');
-          if (role === 'Admin') {
-            this.snackBar.open('Welcome Back Admin !', 'Close', {
-              duration: 3000, // Duration in milliseconds
-              horizontalPosition: 'end', // Horizontal position
-              verticalPosition: 'top', // Vertical position
-              panelClass: ['snackbar-success'], // Custom class for styling
-            });
-            this._router.navigate(['Admin']);
-          } else {
-            this.snackBar.open('Welcome Back !', 'Close', {
-              duration: 3000, // Duration in milliseconds
-              horizontalPosition: 'end', // Horizontal position
-              verticalPosition: 'top', // Vertical position
-              panelClass: ['snackbar-success'],
-            });
-            this._router.navigateByUrl(returnUrl || '/Home');
-          }
-          localStorage.removeItem('returnUrl');
+        const role = this._authService.getRole();
+        const returnUrl = localStorage.getItem('returnUrl');
+        if (role === 'Admin') {
+          this.snackBar.open('Welcome Back Admin !', 'Close', {
+            duration: 3000, // Duration in milliseconds
+            horizontalPosition: 'end', // Horizontal position
+            verticalPosition: 'top', // Vertical position
+            panelClass: ['snackbar-success'], // Custom class for styling
+          });
+          this._router.navigate(['Admin']);
+        } else {
+          this.snackBar.open('Welcome Back !', 'Close', {
+            duration: 3000, // Duration in milliseconds
+            horizontalPosition: 'end', // Horizontal position
+            verticalPosition: 'top', // Vertical position
+            panelClass: ['snackbar-success'],
+          });
+          this._router.navigateByUrl(returnUrl || '/Home');
+        }
+        localStorage.removeItem('returnUrl');
       }
     });
   }

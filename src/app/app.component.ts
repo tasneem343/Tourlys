@@ -1,23 +1,28 @@
 import { Component } from '@angular/core';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
-import { NgxSpinnerService } from 'ngx-spinner';
+import { HeaderComponent } from './Components/header/header.component';
+import { HeroComponent } from './Components/hero/hero.component';
+import { PopularDestinationsComponent } from './Components/popular-destinations/popular-destinations.component';
+import { PackagesComponent } from './Components/packages/packages.component';
+import { GalleryComponent } from './Components/gallery/gallery.component';
+
+import { ContactComponent } from './Components/contact/contact.component';
+import { FooterComponent } from './Components/footer/footer.component';
+import { ToursearchComponent } from './Components/toursearch/toursearch.component';
+import { AdminComponent } from './Layouts/admin/admin.component';
+import { NgxSpinnerComponent } from 'ngx-spinner';
 
 @Component({
   selector: 'app-root',
-  standalone: true,
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, NgxSpinnerComponent,],
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
+  styleUrl: './app.component.css',
 })
 export class AppComponent {
-  constructor(private router: Router, private spinner: NgxSpinnerService) {
+  constructor(private router: Router) {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
-        this.spinner.show();
-        setTimeout(() => {
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-          this.spinner.hide();
-        }, 100);
+        window.scrollTo(0, 0);
       }
     });
   }

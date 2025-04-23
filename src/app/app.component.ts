@@ -26,5 +26,5 @@ export class AppComponent {
       }
     });
   }
-  title = 'TravelBookingPortal';
+  title = 'Tourly';
 }

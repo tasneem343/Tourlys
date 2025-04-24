@@ -15,7 +15,6 @@ import {
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
-
 @Component({
   selector: 'app-register',
   imports: [
@@ -96,7 +95,10 @@ export class RegisterComponent {
         return null;
       },
     ]);
-    this.image = new FormControl('', [Validators.required]);
+    this.image = new FormControl('', [
+      Validators.required,
+      Validators.pattern(/\.(jpg|jpeg|png)$/i),
+    ]);
   }
 
   initFormGroup(): void {
@@ -117,7 +119,19 @@ export class RegisterComponent {
   onImageSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files[0]) {
-      this.image.setValue(input.files[0]);
+      const file = input.files[0];
+      const validExtensions = ['image/jpeg', 'image/png', 'image/jpg'];
+
+      if (!validExtensions.includes(file.type)) {
+        this.image.setErrors({ invalidFileType: true });
+      } else {
+        this.image.setValue(file);
+        this.image.setErrors(null); // Clear any previous errors
+      }
+    } else {
+      // If no file is selected (e.g., user cancels upload)
+      this.image.setErrors({ required: true });
+      this.image.setValue(null); // Clear the value
     }
   }
 
@@ -182,26 +196,20 @@ export class RegisterComponent {
             }
           }
 
-          this.snackBar.open(
-            errorMessages.join('\n'),
-            'Close',
-            {
-              duration: 5000, // Duration in milliseconds
-              horizontalPosition: 'end',
-              verticalPosition: 'top',
-              panelClass: ['snackbar-error'], // Custom class for styling
-            }
-          );
-        }
-        else if (error.error?.errorMessage) {
+          this.snackBar.open(errorMessages.join('\n'), 'Close', {
+            duration: 5000, // Duration in milliseconds
+            horizontalPosition: 'end',
+            verticalPosition: 'top',
+            panelClass: ['snackbar-error'], // Custom class for styling
+          });
+        } else if (error.error?.errorMessage) {
           this.snackBar.open(error.error.errorMessage, 'Close', {
             duration: 5000, // Duration in milliseconds
             horizontalPosition: 'end',
             verticalPosition: 'top',
             panelClass: ['snackbar-error'], // Custom class for styling
           });
-        }
-        else {
+        } else {
           this.snackBar.open(
             'An unexpected error occurred. Please try again.',
             'Close',

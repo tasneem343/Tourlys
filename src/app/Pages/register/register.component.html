@@ -1,5 +1,8 @@
-<link rel="preload" href="./assets/images/a.jpg" as="image">
-<div class="wrapper" style="background-image: url('./assets/images/background.webp')">
+<link rel="preload" href="./assets/images/a.jpg" as="image" />
+<div
+  class="wrapper"
+  style="background-image: url('./assets/images/background.webp')"
+>
   <div class="inner">
     <form [formGroup]="registerForm" (ngSubmit)="submit()">
       <h3 class="section-title h2">Register</h3>
@@ -189,13 +192,12 @@
         (change)="onImageSelected($event)"
         class="form-control file-input"
       />
-      @if (image.touched&& image.dirty) { @if (image.getError('required')) {
-      <div class="error-message">Image is required</div>
-      } @if (image.getError('pattern')) {
-      <div class="error-message">
+      <div class="error-message" *ngIf="image.errors?.['invalidFileType']">
         Image must be in .jpg, .jpeg, or .png format
       </div>
-      } }
+      <div class="error-message" *ngIf="image.errors?.['required']">
+        Image is required
+      </div>
 
       <!-- Login Link -->
       <div class="form-group centered-text">

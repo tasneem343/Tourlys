@@ -192,16 +192,17 @@
         (change)="onImageSelected($event)"
         class="form-control file-input"
       />
-      <div class="error-message" *ngIf="image.errors?.['invalidFileType']">
-        Image must be in .jpg, .jpeg, or .png format
+      <div *ngIf="registerForm.get('image')?.touched && registerForm.get('image')?.invalid" class="error-message">
+        <div *ngIf="registerForm.get('image')?.errors?.['required'] && !registerForm.get('image')?.value">
+          Image is required
+        </div>
+
       </div>
-      <div class="error-message" *ngIf="image.errors?.['required']">
-        Image is required
-      </div>
+
 
       <!-- Login Link -->
       <div class="form-group centered-text">
-        <span style="color: black !important">Already have an account?</span>
+        <span style="color: black !important;">Already have an account?</span>
         <a
           routerLink="/Login"
           class="register-link"

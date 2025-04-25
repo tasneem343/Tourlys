@@ -97,7 +97,6 @@ export class RegisterComponent {
     ]);
     this.image = new FormControl('', [
       Validators.required,
-      Validators.pattern(/\.(jpg|jpeg|png)$/i),
     ]);
   }
 

@@ -38,12 +38,12 @@ export class EditadminprofileComponent {
 
   ngOnInit(): void {
     this.UpdateForm = new FormGroup({
-      firstName: new FormControl('', Validators.required),
-      lastName: new FormControl('', Validators.required),
+      firstName: new FormControl('', [Validators.required,Validators.pattern('^[a-zA-Z]{2,20}$')]),
+      lastName: new FormControl('', [Validators.required,Validators.pattern('^[a-zA-Z]{2,20}$')]),
       userName: new FormControl('', Validators.required),
       phoneNumber: new FormControl('', [Validators.required, Validators.pattern(/^0\d{10}$/)]),
-      city: new FormControl('', Validators.required),
-      state: new FormControl('', Validators.required),
+      city: new FormControl('', [Validators.required,Validators.pattern('^[a-zA-Z]{2,20}$')]),
+      state: new FormControl('',[Validators.required,Validators.pattern('^[a-zA-Z]{2,20}$')]),
       street: new FormControl('', Validators.required),
       email: new FormControl('', [Validators.required, Validators.email]),
       image: new FormControl(null)

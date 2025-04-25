@@ -14,6 +14,12 @@ body {
   width: 100%;
   height: auto;
 }
+.error-message {
+  color: red;
+  font-size: 10px;
+  margin-top: -8px;
+  margin-bottom: 8px;
+}
 
 input,
 textarea,
